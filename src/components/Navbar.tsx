@@ -14,8 +14,15 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#hero" className="font-brand text-3xl md:text-4xl text-primary">
-            GLOWUP
+          <a href="#hero" className="inline-flex items-center gap-3">
+            <img
+              src="/assets/glowup_icon_transparent_1024.png"
+              alt="GLOWUP"
+              className="h-9 w-9 md:h-10 md:w-10"
+            />
+            <span className="font-brand text-3xl md:text-4xl text-primary">
+              GLOWUP
+            </span>
           </a>
 
           {/* Desktop Navigation */}
