@@ -114,7 +114,7 @@ export function Hero() {
           )}
 
           {/* Secondary CTA */}
-          <div className="mt-8 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          {/* <div className="mt-8 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <a
               href="#"
               className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -122,7 +122,7 @@ export function Hero() {
               <Play className="w-4 h-4" />
               Ver demo (2 min)
             </a>
-          </div>
+          </div> */}
 
           {/* Social proof */}
           <div className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.5s" }}>
