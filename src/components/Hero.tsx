@@ -11,20 +11,41 @@ export function Hero() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const result = emailSchema.safeParse(email);
-    
     if (!result.success) {
       setStatus("error");
       setErrorMessage(result.error.errors[0].message);
       return;
     }
 
-    // Simula sucesso (sem backend)
-    setStatus("success");
-    setEmail("");
+    const WAITLIST_ENDPOINT =
+      "https://script.google.com/macros/s/AKfycbwo7PKy91155pNL0aPwQ9ToOtuqpUAtdWHpSvkHr6BsRuCSNCTH3ACyNoD8ycDV8_7k/exec";
+
+    try {
+      setIsSubmitting(true);
+
+      await fetch(WAITLIST_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams({
+          email,
+          source: "hero",
+        }),
+      });
+
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+      setErrorMessage("Falha ao salvar. Tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const errorId = status === "error" ? "hero-email-error" : undefined;
@@ -107,8 +128,8 @@ export function Hero() {
                   </p>
                 )}
               </div>
-              <Button type="submit" size="lg" className="h-12 px-8">
-                Entrar na lista
+              <Button type="submit" size="lg" className="h-12 px-8" disabled={isSubmitting}>
+                {isSubmitting ? "Enviando..." : "Entrar na lista"}
               </Button>
             </form>
           )}
