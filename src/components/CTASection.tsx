@@ -26,6 +26,8 @@ export function CTASection() {
     setEmail("");
   };
 
+  const errorId = status === "error" ? "cta-email-error" : undefined;
+
   return (
     <section className="py-20 md:py-32">
       <div className="container mx-auto px-4">
@@ -40,7 +42,11 @@ export function CTASection() {
 
           {/* Email Form */}
           {status === "success" ? (
-            <div className="flex items-center justify-center gap-3 p-6 bg-card rounded-2xl border border-primary/20 animate-scale-in max-w-md mx-auto">
+            <div
+              className="flex items-center justify-center gap-3 p-6 bg-card rounded-2xl border border-primary/20 animate-scale-in max-w-md mx-auto"
+              role="status"
+              aria-live="polite"
+            >
               <CheckCircle className="w-6 h-6 text-primary" />
               <p className="text-lg font-medium text-foreground">
                 Você está na lista!
@@ -61,12 +67,18 @@ export function CTASection() {
                     setStatus("idle");
                     setErrorMessage("");
                   }}
+                  aria-invalid={status === "error"}
+                  aria-describedby={errorId}
                   className={`h-12 text-base bg-card ${
                     status === "error" ? "border-destructive" : ""
                   }`}
                 />
                 {status === "error" && (
-                  <p className="text-sm text-destructive mt-1 text-left">
+                  <p
+                    id={errorId}
+                    className="text-sm text-destructive mt-1 text-left"
+                    role="alert"
+                  >
                     {errorMessage}
                   </p>
                 )}

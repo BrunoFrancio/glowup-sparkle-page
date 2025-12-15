@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <a href="#" className="font-brand text-2xl text-primary">
+          <a href="https://glowup.app" className="font-brand text-2xl text-primary">
             GLOWUP
           </a>
 
@@ -18,10 +18,10 @@ export function Footer() {
             <a href="#faq" className="hover:text-primary transition-colors">
               FAQ
             </a>
-            <a href="#" className="hover:text-primary transition-colors">
+            <a href="https://glowup.app/termos" className="hover:text-primary transition-colors">
               Termos
             </a>
-            <a href="#" className="hover:text-primary transition-colors">
+            <a href="https://glowup.app/privacidade" className="hover:text-primary transition-colors">
               Privacidade
             </a>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
           {/* Social */}
           <div className="flex items-center gap-4">
             <a
-              href="#"
+              href="https://instagram.com/glowup.app"
               className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
               aria-label="Instagram"
             >
