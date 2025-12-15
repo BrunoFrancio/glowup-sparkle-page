@@ -7,11 +7,14 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border"
+      aria-label="Navegação principal"
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="font-brand text-3xl md:text-4xl text-primary">
+          <a href="#hero" className="font-brand text-3xl md:text-4xl text-primary">
             GLOWUP
           </a>
 
@@ -40,6 +43,8 @@ export function Navbar() {
             className="md:hidden p-2 text-foreground"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
+            aria-expanded={isOpen}
+            aria-controls="menu-mobile"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -47,7 +52,7 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
+          <div id="menu-mobile" className="md:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a

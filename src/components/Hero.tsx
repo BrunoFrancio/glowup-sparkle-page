@@ -27,6 +27,8 @@ export function Hero() {
     setEmail("");
   };
 
+  const errorId = status === "error" ? "hero-email-error" : undefined;
+
   return (
     <section
       id="hero"
@@ -63,7 +65,11 @@ export function Hero() {
 
           {/* Email Form */}
           {status === "success" ? (
-            <div className="flex items-center justify-center gap-3 p-6 bg-card rounded-2xl border border-primary/20 animate-scale-in">
+            <div
+              className="flex items-center justify-center gap-3 p-6 bg-card rounded-2xl border border-primary/20 animate-scale-in"
+              role="status"
+              aria-live="polite"
+            >
               <CheckCircle className="w-6 h-6 text-primary" />
               <p className="text-lg font-medium text-foreground">
                 Você está na lista! Avisaremos quando lançarmos.
@@ -85,12 +91,18 @@ export function Hero() {
                     setStatus("idle");
                     setErrorMessage("");
                   }}
+                  aria-invalid={status === "error"}
+                  aria-describedby={errorId}
                   className={`h-12 text-base bg-card ${
                     status === "error" ? "border-destructive" : ""
                   }`}
                 />
                 {status === "error" && (
-                  <p className="text-sm text-destructive mt-1 text-left">
+                  <p
+                    id={errorId}
+                    className="text-sm text-destructive mt-1 text-left"
+                    role="alert"
+                  >
                     {errorMessage}
                   </p>
                 )}
